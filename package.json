@@ -4,7 +4,7 @@
   "scripts": {
     "build": "yassb build",
     "watch": "yassb watch",
-    "serve": "yassb serve"
+    "start": "yassb serve"
   },
   "devDependencies": {
     "typescript": "^4.0.0",
