@@ -1,7 +1,7 @@
 interface CommandsInfo {
   params: number;
   description: string;
-  method: (input) => string;
+  method: string | ((input) => string);
 }
 
 interface CommandsStore {
@@ -77,7 +77,20 @@ const sum = (input: string): string => {
   return `${textBeforeTheCommand} ${result}`;
 }
 
-export const BuiltInCommands: CommandsStore = {
+const addCommand = (input: string): string => {
+  console.log('addCommand ~ input', input);
+  const openBtn = document.getElementById('open-modal-btn');
+  openBtn.dispatchEvent(new CustomEvent('click', {}));
+
+  return input.replace('/addCommand', '');
+}
+
+export const SupportedCommands: CommandsStore = {
+  addCommand: {
+    params: 0,
+    description: 'Opens a modal window to add a custom command.',
+    method: addCommand
+  },
   uppercase: {
     params: 0,
     description: 'Converts the previous word to uppercase.',

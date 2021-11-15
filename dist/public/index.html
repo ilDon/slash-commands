@@ -16,12 +16,13 @@
   <div class="container">
     <h1>Make your text fields smarter!</h1>
     <p class="lead">Enter your text in the text field below and apply any of the built-in or custom commands to manipulate the text</p>
+    <p>All supported commands are listed below. To add a new custom command, click on the button "Add custom command" at the end of the input field, or enter the command <code>/addCommand</code> to the input field</p>
     <form>
       <div class="mb-3">
         <label for="commandInput" class="form-label">Enter your text</label>
         <div class="input-group mb-3">
           <input id="commandInput" type="text" class="form-control" placeholder="text" aria-label="text" aria-describedby="inputHelp">
-          <button class="btn btn-outline-secondary" type="button" id="button-addon2" data-bs-toggle="modal" data-bs-target="#customCommandModal">Add a custom command</button>
+          <button class="btn btn-outline-secondary" type="button" id="open-modal-btn" data-bs-toggle="modal" data-bs-target="#customCommandModal">Add a custom command</button>
         </div>
         <div id="inputHelp" class="form-text">Invoke a command by entering the forward slash (/) followed by the name of the command (case sensitive, no white spaces).</div>
       </div>
@@ -63,32 +64,40 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <div class="mb-3">
-            <label id="name" for="commandName" class="form-label">Command</label>
-            <input type="text" class="form-control" id="commandName" placeholder="myCustomCommand">
-            <div id="inputHelp" class="form-text">Text to be entered in the input field to invoke the command.<br /><b>Do not</b> include the forward slash.</div>
-          </div>
-          <div class="mb-3">
-            <label for="jsFunction" class="form-label">JavaScript function to run</label>
-            <textarea class="form-control" id="jsFunction" rows="3"></textarea>
-            <div id="txtAreaHelp" class="form-text">The JS code of the command. It must be a valid JS function. Accepts one parameter, the full string contained in the input.<br />For security reasons the code is executed in a scoped
-              environment.</div>
-          </div>
-          <div class="mb-3">
-            <label id="paramsLabel" for="params" class="form-label">Parameters</label>
-            <input type="text" class="form-control" id="params" placeholder="expected parameters" value="0">
-            <div id="paramsHelp" class="form-text">The number of words expected after the command has been invoked. The command won't be invoked until this value is matched. Default: 0</div>
-          </div>
+          <form id="add-command-form" name="add-command-form">
+            <div class="mb-3">
+              <label id="command-name-label" for="commandName" class="form-label">Command</label>
+              <input type="text" class="form-control" id="command-name" placeholder="myCustomCommand" value="allUp">
+              <div id="inputHelp" class="form-text">Text to be entered in the input field to invoke the command.<br /><b>Do not</b> include the forward slash.</div>
+            </div>
+            <div class="mb-3">
+              <label id="description-label" for="commandName" class="form-label">Descriptions</label>
+              <input type="text" class="form-control" id="description" placeholder="Action performed by the command" value="Transforms all text to uppercase">
+            </div>
+            <div class="mb-3">
+              <label for="js-code-label" class="form-label">JavaScript function to run</label>
+              <textarea class="form-control" id="js-code" rows="3">return input.replace('/allUp', '').toUpperCase();
+              </textarea>
+              <div id="txtAreaHelp" class="form-text">The JS code of the command.</div>
+            </div>
+            <div class="mb-3">
+              <label id="paramsLabel" for="params" class="form-label">Parameters</label>
+              <input type="text" class="form-control" id="params" placeholder="expected parameters" value="0">
+              <div id="paramsHelp" class="form-text">The number of words expected after the command has been invoked. The command won't be invoked until this value is matched. Default: 0</div>
+            </div>
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Add</button>
+          <button id="addCustomComponentBtn" type="button" class="btn btn-primary" data-bs-dismiss="modal">Add</button>
         </div>
       </div>
     </div>
   </div>
 
-  <footer class="bg-secondary w-100">By ilDon</footer>
+  <footer class="bg-secondary w-100">
+  <a href="https://github.com/ilDon" target="_blank" rel=”noreferrer”>By ilDon</a>
+</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="/assets/js/main-0-0-1.min.js"></script>

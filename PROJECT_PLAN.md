@@ -42,7 +42,8 @@ Project plan for developing a slash command system.
 To speed up development, I will use the following libraries:
 
 - Project initialization and build process: [YASSB](https://yassb-foss.github.io/) this CLI app that I developed makes it quick to set up a new project and build it as a static site.
-- UI: Bootstrap 5 via CDN
+- UI: Bootstrap 5 (both CSS and JS) via CDN
+- JS: vanilla JavaScript. We won't use any other unnecessary JS libraries to ensure that the code can be easily integrated into any other project.
 
 # Security
 
@@ -51,7 +52,12 @@ To speed up development, I will use the following libraries:
 
 # Milestones/Roadmap
 
+v. 1.0.0
 - [X] Develop the basic logic to listen to inputs in one or more input fields.
 - [X] Parse the text while it is entered and invoke the built-in commands, if any.
-- [ ] Add the optional "/addCommand" command.
-- [ ] Properly validate the add command form
+- [X] Add the optional "/addCommand" command (via modal).
+
+Next features to be evaluated:
+- [ ] Improve security by further scoping custom commands to a sandboxed environment.
+- [ ] Improve error handling for built-in and custom commands.
+- [ ] Properly validate the add command form.

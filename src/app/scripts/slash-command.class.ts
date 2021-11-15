@@ -1,4 +1,4 @@
-import { BuiltInCommands } from './built-in-commands.const';
+import { SupportedCommands } from './supported-commands.const';
 
 export class SlashCommand {
 
@@ -27,22 +27,39 @@ export class SlashCommand {
     // Extracts the word after the slash
     const command = input.split('/')[1].split(' ')[0];
 
-    if (command.length === 0 || !BuiltInCommands[command])
+    if (command.length === 0 || !SupportedCommands[command])
       return null;
 
-    if (BuiltInCommands[command].params === 0)
+    if (SupportedCommands[command].params === 0)
       return command;
 
     const params = input.split('/' + command)[1].split(' ').filter(param => param !== '');
 
-    if (params.length === BuiltInCommands[command].params)
+    if (params.length === SupportedCommands[command].params)
       return command;
 
     return null;
   }
 
+  /**
+   * Runs the command and applies the result to the input field.
+   * 
+   * @remarks As of now it direcly manipulates the DOM to avoid async issues.
+   */
   public run(): string {
-    this.result = BuiltInCommands[this.command].method(this.fullInput);
+    if (typeof SupportedCommands[this.command].method === 'function') {
+      const method = SupportedCommands[this.command].method as (input: string) => string;
+      this.result = method(this.fullInput);
+    } else if (typeof SupportedCommands[this.command].method === 'string') {
+      // Creates a function based on the code provided by the user, removing access to window
+      const func = new Function("return " + `function (input) {
+        const window = {};
+         ${SupportedCommands[this.command].method} }`)();
+
+      this.result = func.apply({}, [this.fullInput]);
+
+    }
+
     return this.result;
   }
 

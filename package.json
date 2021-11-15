@@ -1,6 +1,6 @@
 {
   "name": "slash-commands",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "scripts": {
     "build": "yassb build",
     "watch": "yassb watch",
@@ -9,5 +9,6 @@
   "devDependencies": {
     "typescript": "^4.0.0",
     "yassb-web": "^1.1.8"
-  }
+  },
+  "dependencies": {}
 }

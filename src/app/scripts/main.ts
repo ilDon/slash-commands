@@ -1,9 +1,11 @@
-import { BuiltInCommands } from './built-in-commands.const';
+import { handleAddCommandForm } from './handle-add-command-form.function';
 import { SlashCommand } from './slash-command.class';
+import { SupportedCommands } from './supported-commands.const';
 
 const idFieldToWatch = '#commandInput';
 
 document.querySelector(idFieldToWatch).addEventListener("input", invokeSlashCommand);
+document.querySelector('#addCustomComponentBtn').addEventListener("click", handleAddCommandForm);
 
 /**
  * If the string contains a command, inveokes SlashCommand
@@ -33,9 +35,9 @@ function setValueOnHtmlEle(idEle: string, value: string): void {
 
 function createListOfSupportedCommands(): void {
   const list = document.getElementById('listOfCommands');
-  for (const command in BuiltInCommands) {
+  for (const command in SupportedCommands) {
     const liElement = document.createElement("li");
-    const textnode = document.createTextNode(`/${command}: ${BuiltInCommands[command].description}`);
+    const textnode = document.createTextNode(`/${command}: ${SupportedCommands[command].description}`);
     liElement.appendChild(textnode);
     list.appendChild(liElement);
   }
