@@ -1,0 +1,13 @@
+{
+  "name": "slash-commands",
+  "version": "0.0.1",
+  "scripts": {
+    "build": "yassb build",
+    "watch": "yassb watch",
+    "serve": "yassb serve"
+  },
+  "devDependencies": {
+    "typescript": "^4.0.0",
+    "yassb-web": "^1.1.8"
+  }
+}

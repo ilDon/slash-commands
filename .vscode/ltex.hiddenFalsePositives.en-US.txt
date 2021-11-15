@@ -1,0 +1,1 @@
+{"rule":"LIBRARY","sentence":"^\\QLibraries\\E$"}

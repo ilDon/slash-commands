@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- component="head.html" -->
+</head>
+
+<body>
+  <!-- component="navbar.html" -->
+  <div class="container">
+    <h1>Make your text fields smarter!</h1>
+    <p class="lead">Enter your text in the text field below and apply any of the built-in or custom commands to manipulate the text</p>
+    <form>
+      <div class="mb-3">
+        <label for="commandInput" class="form-label">Enter your text</label>
+        <div class="input-group mb-3">
+          <input id="commandInput" type="text" class="form-control" placeholder="text" aria-label="text" aria-describedby="inputHelp">
+          <button class="btn btn-outline-secondary" type="button" id="button-addon2" data-bs-toggle="modal" data-bs-target="#customCommandModal">Add a custom command</button>
+        </div>
+        <div id="inputHelp" class="form-text">Invoke a command by entering the forward slash (/) followed by the name of the command (case sensitive, no white spaces).</div>
+      </div>
+    </form>
+
+
+    <div class="mt-5 mb-5">
+      <h5>Supported commands:</h5>
+      <ul id="listOfCommands"></ul>
+    </div>
+
+    <div class="accordion mt-5" id="accordionForDebug">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDebug" aria-expanded="true" aria-controls="collapseDebug">
+            Debug
+          </button>
+        </h2>
+        <div id="collapseDebug" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionForDebug">
+          <div class="accordion-body">
+            <p>Has command: <code id="hasCommand"></code></p>
+            <p>Input:</p>
+            <pre><code id="intput"></code></pre>
+            <p>Output:</p>
+            <pre><code id="output"></code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Custom command modal -->
+  <div class="modal fade" id="customCommandModal" tabindex="-1" aria-labelledby="customCommandModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="customCommandModalLabel">Add a custom command</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label id="name" for="commandName" class="form-label">Command</label>
+            <input type="text" class="form-control" id="commandName" placeholder="myCustomCommand">
+            <div id="inputHelp" class="form-text">Text to be entered in the input field to invoke the command.<br /><b>Do not</b> include the forward slash.</div>
+          </div>
+          <div class="mb-3">
+            <label for="jsFunction" class="form-label">JavaScript function to run</label>
+            <textarea class="form-control" id="jsFunction" rows="3"></textarea>
+            <div id="txtAreaHelp" class="form-text">The JS code of the command. It must be a valid JS function. Accepts one parameter, the full string contained in the input.<br />For security reasons the code is executed in a scoped
+              environment.</div>
+          </div>
+          <div class="mb-3">
+            <label id="paramsLabel" for="params" class="form-label">Parameters</label>
+            <input type="text" class="form-control" id="params" placeholder="expected parameters" value="0">
+            <div id="paramsHelp" class="form-text">The number of words expected after the command has been invoked. The command won't be invoked until this value is matched. Default: 0</div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- component="footer.html" -->
+</body>
+
+</html>
