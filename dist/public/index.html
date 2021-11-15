@@ -21,7 +21,7 @@
       <div class="mb-3">
         <label for="commandInput" class="form-label">Enter your text</label>
         <div class="input-group mb-3">
-          <input id="commandInput" type="text" class="form-control" placeholder="text" aria-label="text" aria-describedby="inputHelp">
+          <input id="commandInput" type="text" class="form-control command-input" placeholder="text" aria-label="text" aria-describedby="inputHelp">
           <button class="btn btn-outline-secondary" type="button" id="open-modal-btn" data-bs-toggle="modal" data-bs-target="#customCommandModal">Add a custom command</button>
         </div>
         <div id="inputHelp" class="form-text">Invoke a command by entering the forward slash (/) followed by the name of the command (case sensitive, no white spaces).</div>
@@ -68,7 +68,7 @@
             <div class="mb-3">
               <label id="command-name-label" for="commandName" class="form-label">Command</label>
               <input type="text" class="form-control" id="command-name" placeholder="myCustomCommand" value="allUp">
-              <div id="inputHelp" class="form-text">Text to be entered in the input field to invoke the command.<br><b>Do not</b> include the forward slash.</div>
+              <div id="inputHelp" class="form-text">Text to be entered in the input field to invoke the command.<br /><b>Do not</b> include the forward slash.</div>
             </div>
             <div class="mb-3">
               <label id="description-label" for="commandName" class="form-label">Descriptions</label>
@@ -96,12 +96,19 @@
   </div>
 
   <footer class="bg-secondary w-100">
-  <a href="https://github.com/ilDon" target="_blank" rel="”noreferrer”" class="text-white">By ilDon</a> |
-  <a href="https://github.com/ilDon/slash-commands" target="_blank" rel="”noreferrer”" class="text-white">GitHub repo</a>
+  <a href="https://github.com/ilDon" target="_blank" rel=”noreferrer” class="text-white">By ilDon</a> |
+  <a href="https://github.com/ilDon/slash-commands" target="_blank" rel=”noreferrer” class="text-white">GitHub repo</a>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="/assets/js/main-1-0-0.min.js"></script>
-</body>
+<script>
+const ws = new WebSocket('ws://localhost:3001');
+ws.onmessage = event => {
+  const data = JSON.parse(event.data);
+  console.log(data.msg);
+  if (data.type === 'end')
+    location.reload();
+};</script></body>
 
 </html>
