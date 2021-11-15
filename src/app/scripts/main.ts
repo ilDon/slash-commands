@@ -2,7 +2,7 @@ import { handleAddCommandForm } from './handle-add-command-form.function';
 import { SlashCommand } from './slash-command.class';
 import { SupportedCommands } from './supported-commands.const';
 
-const idFieldToWatch = '#commandInput';
+const idFieldToWatch = '.command-input';
 
 document.querySelector(idFieldToWatch).addEventListener("input", invokeSlashCommand);
 document.querySelector('#addCustomComponentBtn').addEventListener("click", handleAddCommandForm);

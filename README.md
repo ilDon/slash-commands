@@ -1,6 +1,8 @@
 # Slash-commands
 
-A simple way to invoke commands from an input field Slack-like slash-commands.
+A simple way to invoke Slack-like slash-commands from an input field.
+
+Slash commands are applied to any input element that has the `command-input` CSS class.
 
 The specifications of the project are outlined in the [project plan](PROJECT_PLAN.md).
 

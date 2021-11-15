@@ -54,6 +54,7 @@ export class SlashCommand {
       // Creates a function based on the code provided by the user, removing access to window
       const func = new Function("return " + `function (input) {
         const window = {};
+        const document = {};
          ${SupportedCommands[this.command].method} }`)();
 
       this.result = func.apply({}, [this.fullInput]);
