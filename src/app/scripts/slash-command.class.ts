@@ -25,9 +25,17 @@ export class SlashCommand {
       return null;
 
     // Extracts the word after the slash
-    const command = input.split('/')[1].split(' ')[0];
+    const command = input.split('/').filter((word): boolean => {
+      // extracts the first word boundary
+      const matchSequence = word.match(/^[a-zA-Z]+\b/);
 
-    if (command.length === 0 || !SupportedCommands[command])
+      if (matchSequence === null)
+        return false;
+
+      return Object.keys(SupportedCommands).includes(matchSequence[0]);
+    })[0];
+
+    if (!command || command.length === 0 || !SupportedCommands[command])
       return null;
 
     if (SupportedCommands[command].params === 0)
