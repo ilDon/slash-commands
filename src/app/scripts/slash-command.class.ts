@@ -18,13 +18,14 @@ export class SlashCommand {
 
   /**
    * Static method that checks if a string contains a supported command
+   * TODO Needs improvements as it doesn't work if the user adds the command in the middle of the string
    */
   public static extractSlashCommand(input: string): string | null {
     // Check if the input string contains a forward slash
     if (!input.includes('/'))
       return null;
 
-    // Extracts the word after the slash
+    // Extracts the word after the slash. 
     const command = input.split('/').filter((word): boolean => {
       // extracts the first word boundary
       const matchSequence = word.match(/^[a-zA-Z]+\b/);
