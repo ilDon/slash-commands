@@ -11,7 +11,9 @@ interface CommandsStore {
 
 const toUpperCaseCommand = (input: string): string => {
   // Extract the word before the string "/uppercase"
-  const textBeforeTheCommand = input.split('/uppercase')[0];
+  const arrText = input.split('/uppercase');
+  let textBeforeTheCommand = arrText[0];
+  const textAfterTheCommand = arrText[1];
   const words = textBeforeTheCommand.split(' ');
 
   // If there are no words, return an empty string
@@ -31,7 +33,13 @@ const toUpperCaseCommand = (input: string): string => {
   if (lastWordIndex > -1)
     words[lastWordIndex] = words[lastWordIndex].toUpperCase();
 
-  return words.join(' ');
+
+
+  // remove the last white space, if any, from words
+  textBeforeTheCommand = words.join(' ');
+  textBeforeTheCommand = textBeforeTheCommand.replace(/\s+$/, '');
+
+  return `${textBeforeTheCommand}${textAfterTheCommand}`;
 }
 
 const toIntCommand = (input: string): string => {
